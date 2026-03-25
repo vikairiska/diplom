@@ -1,0 +1,32 @@
+﻿<Window x:Class="VerhozinaIvanovDiplom.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VerhozinaIvanovDiplom"
+        xmlns:pages="clr-namespace:VerhozinaIvanovDiplom.Pages"
+        mc:Ignorable="d"
+        Title="Обучение устройству автомобиля" Height="450" Width="800"
+        Icon="Resources/app.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Style="{StaticResource MenuContainerStyle}">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Content="Добавить" Style="{StaticResource MenuButtonStyle}"/>
+                    <Button Content="Удалить" Style="{StaticResource MenuButtonStyle}"/>
+                    <Button Content="Редактировать" Style="{StaticResource MenuButtonStyle}"/>
+                    <Button Content="Назначить" Style="{StaticResource MenuButtonStyle}"/>
+                    <Button Content="Пользователи" Style="{StaticResource MenuButtonStyle}"/>
+                    <Button Content="Найти" Style="{StaticResource MenuButtonStyle}"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <Frame Grid.Row="1" NavigationUIVisibility="Hidden" Source="Pages/HomePage.xaml"/>
+    </Grid>
+</Window>
