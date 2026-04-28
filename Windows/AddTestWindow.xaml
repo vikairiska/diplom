@@ -1,0 +1,75 @@
+<Window x:Class="VerhozinaIvanovDiplom.Windows.AddTestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Добавление теста"
+        Height="720"
+        Width="900"
+        WindowStartupLocation="CenterOwner">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Border BorderBrush="#DDDDDD" BorderThickness="1" CornerRadius="8" Padding="16" Margin="0,0,0,16">
+                    <StackPanel>
+                        <TextBlock x:Name="FormTitleTextBlock" Text="Новый тест" FontSize="24" FontWeight="SemiBold"/>
+                        <TextBlock Text="Название теста" Margin="0,16,0,4"/>
+                        <TextBox x:Name="TitleTextBox" Height="32"/>
+
+                        <TextBlock Text="Описание" Margin="0,12,0,4"/>
+                        <TextBox x:Name="DescriptionTextBox" Height="72" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                            <StackPanel Width="220">
+                                <TextBlock Text="Уровень теста" Margin="0,0,0,4"/>
+                                <ComboBox x:Name="LevelComboBox"
+                                          Height="32"
+                                          DisplayMemberPath="Name"
+                                          SelectedValuePath="Id"/>
+                            </StackPanel>
+                            <StackPanel Width="220">
+                                <TextBlock Text="Проходной балл" Margin="0,0,0,4"/>
+                                <TextBox x:Name="PassingScoreTextBox" Height="32" Text="1"/>
+                            </StackPanel>
+                            <StackPanel Width="220" Margin="16,0,0,0">
+                                <TextBlock Text="Лимит времени (мин)" Margin="0,0,0,4"/>
+                                <TextBox x:Name="TimeLimitTextBox" Height="32"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <StackPanel x:Name="QuestionsContainer"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+            <Button Content="Добавить вопрос"
+                    Width="160"
+                    Height="35"
+                    Margin="0,0,10,0"
+                    Style="{StaticResource ButtonStyleGreen}"
+                    Click="AddQuestionButton_Click"/>
+            <Button Content="Сохранить тест"
+                    Width="160"
+                    Height="35"
+                    Margin="0,0,10,0"
+                    Style="{StaticResource ButtonStyleGreen}"
+                    Click="SaveButton_Click"/>
+            <Button Content="Предпросмотр"
+                    Width="160"
+                    Height="35"
+                    Margin="0,0,10,0"
+                    Style="{StaticResource ButtonStyleGreen}"
+                    Click="PreviewButton_Click"/>
+            <Button Content="Отмена"
+                    Width="120"
+                    Height="35"
+                    Style="{StaticResource ButtonStyleGreen}"
+                    Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

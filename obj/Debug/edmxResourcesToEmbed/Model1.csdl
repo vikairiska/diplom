@@ -33,6 +33,7 @@
     <Property Name="AuthorId" Type="Int32" />
     <Property Name="PublishedDate" Type="DateTime" Precision="7" />
     <Property Name="IsPublished" Type="Boolean" />
+    <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="ArticleComments" Relationship="Self.FK_ArticleComments_Articles" FromRole="Articles" ToRole="ArticleComments" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Articles_Users" FromRole="Articles" ToRole="Users" />
     <NavigationProperty Name="Tests" Relationship="Self.FK_Tests_Articles" FromRole="Articles" ToRole="Tests" />
@@ -98,6 +99,15 @@
     <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_Tests" FromRole="Tests" ToRole="Questions" />
     <NavigationProperty Name="TestLevels" Relationship="Self.FK_Tests_TestLevels" FromRole="Tests" ToRole="TestLevels" />
     <NavigationProperty Name="TestResults" Relationship="Self.FK_TestResults_Tests" FromRole="Tests" ToRole="TestResults" />
+  </EntityType>
+  <EntityType Name="SelectedTests">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="TestId" Type="Int32" Nullable="false" />
+    <Property Name="AssignedDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -251,6 +261,7 @@
     <EntitySet Name="TestLevels" EntityType="Self.TestLevels" />
     <EntitySet Name="TestResults" EntityType="Self.TestResults" />
     <EntitySet Name="Tests" EntityType="Self.Tests" />
+    <EntitySet Name="SelectedTests" EntityType="Self.SelectedTests" />
     <EntitySet Name="Users" EntityType="Self.Users" />
     <AssociationSet Name="FK_Answers_Questions" Association="Self.FK_Answers_Questions">
       <End Role="Questions" EntitySet="Questions" />

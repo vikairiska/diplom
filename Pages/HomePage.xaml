@@ -1,13 +1,62 @@
 <Page x:Class="VerhozinaIvanovDiplom.Pages.HomePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:VerhozinaIvanovDiplom.Pages"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="HomePage">
+      Title="HomePage"
+      Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <local:ImageDataToImageBrushConverter x:Key="ImageDataToImageBrushConverter"/>
+    </Page.Resources>
 
     <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="15">
+            <ItemsControl x:Name="ArticlesItemsControl">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Height="100" Margin="0,0,0,10" CornerRadius="8" 
+                                Cursor="Hand" MouseLeftButtonUp="ArticleTile_Click"
+                                Tag="{Binding Id}">
+                            <Border.Background>
+                                <Binding Path="ImageData" Converter="{StaticResource ImageDataToImageBrushConverter}"/>
+                            </Border.Background>
+                            
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="2" BlurRadius="8" Opacity="0.3"/>
+                            </Border.Effect>
+                            
+                            <Grid>
+                                <!-- Затемнение фона -->
+                                <Rectangle Fill="#AA000000"/>
+                                
+                                <!-- Заголовок статьи -->
+                                <TextBlock Text="{Binding Title}" 
+                                           Foreground="White" 
+                                           FontSize="22" 
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Margin="20,0,0,0"
+                                           TextWrapping="Wrap"
+                                           MaxWidth="600"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        
+        <!-- Сообщение если нет статей -->
+        <TextBlock x:Name="NoArticlesText" 
+                   Text="Статьи пока не добавлены" 
+                   FontSize="18" 
+                   Foreground="Gray"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Visibility="Collapsed"/>
     </Grid>
 </Page>

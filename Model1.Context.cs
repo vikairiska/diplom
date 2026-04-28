@@ -33,6 +33,7 @@ namespace VerhozinaIvanovDiplom
         public virtual DbSet<TestLevels> TestLevels { get; set; }
         public virtual DbSet<TestResults> TestResults { get; set; }
         public virtual DbSet<Tests> Tests { get; set; }
+        public virtual DbSet<SelectedTests> SelectedTests { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     }
 }

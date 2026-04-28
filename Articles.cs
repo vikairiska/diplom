@@ -27,6 +27,7 @@ namespace VerhozinaIvanovDiplom
         public Nullable<int> AuthorId { get; set; }
         public Nullable<System.DateTime> PublishedDate { get; set; }
         public Nullable<bool> IsPublished { get; set; }
+        public byte[] ImageData { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ArticleComments> ArticleComments { get; set; }

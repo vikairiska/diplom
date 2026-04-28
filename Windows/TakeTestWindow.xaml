@@ -1,0 +1,42 @@
+<Window x:Class="VerhozinaIvanovDiplom.Windows.TakeTestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Прохождение теста"
+        Height="720"
+        Width="900"
+        WindowStartupLocation="CenterOwner">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Border BorderBrush="#DDDDDD" BorderThickness="1" CornerRadius="8" Padding="16" Margin="0,0,0,16">
+                    <StackPanel>
+                        <TextBlock x:Name="TestTitleTextBlock" FontSize="24" FontWeight="Bold"/>
+                        <TextBlock x:Name="TestLevelTextBlock" Margin="0,8,0,0" FontWeight="SemiBold"/>
+                        <TextBlock x:Name="TestDescriptionTextBlock" Margin="0,8,0,0" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Border>
+
+                <StackPanel x:Name="QuestionsContainer"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+            <Button Content="Завершить тест"
+                    Width="180"
+                    Height="35"
+                    Margin="0,0,10,0"
+                    Style="{StaticResource ButtonStyleGreen}"
+                    Click="SubmitButton_Click"/>
+            <Button Content="Закрыть"
+                    Width="120"
+                    Height="35"
+                    Style="{StaticResource ButtonStyleGreen}"
+                    Click="CloseButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\User\source\repos\VerhozinaIvanovDiplom\App.xaml
-4-1188440782
+131166635152
 2-1957146511
-19-1274245219
+31991409537
 18-1153556107
-MainWindow.xaml;Pages\HomePage.xaml;Windows\LoginWindow.xaml;Styles\MenuStyles.xaml;
+MainWindow.xaml;Pages\HomePage.xaml;Windows\LoginWindow.xaml;Windows\AddArticleWindow.xaml;Windows\ArticleViewWindow.xaml;Windows\AddTestWindow.xaml;Windows\TakeTestWindow.xaml;Windows\AssignTestWindow.xaml;Windows\AssignedTestsWindow.xaml;Windows\UserProfileWindow.xaml;Windows\UserProgressWindow.xaml;Windows\UsersProgressWindow.xaml;Styles\MenuStyles.xaml;
 
 False
 

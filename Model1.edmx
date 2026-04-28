@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Answers">
           <Key>
             <PropertyRef Name="Id" />
@@ -35,6 +35,7 @@
           <Property Name="AuthorId" Type="int" />
           <Property Name="PublishedDate" Type="datetime2" Precision="7" />
           <Property Name="IsPublished" Type="bit" />
+          <Property Name="ImageData" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Questions">
           <Key>
@@ -53,6 +54,15 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="SelectedTests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="TestId" Type="int" Nullable="false" />
+          <Property Name="AssignedDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="TestLevels">
           <Key>
@@ -233,6 +243,7 @@
           <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SelectedTests" EntityType="Self.SelectedTests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestLevels" EntityType="Self.TestLevels" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestResults" EntityType="Self.TestResults" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tests" EntityType="Self.Tests" Schema="dbo" store:Type="Tables" />
@@ -278,8 +289,7 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -316,6 +326,7 @@
           <Property Name="AuthorId" Type="Int32" />
           <Property Name="PublishedDate" Type="DateTime" Precision="7" />
           <Property Name="IsPublished" Type="Boolean" />
+          <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="ArticleComments" Relationship="Self.FK_ArticleComments_Articles" FromRole="Articles" ToRole="ArticleComments" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Articles_Users" FromRole="Articles" ToRole="Users" />
           <NavigationProperty Name="Tests" Relationship="Self.FK_Tests_Articles" FromRole="Articles" ToRole="Tests" />
@@ -381,6 +392,15 @@
           <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_Tests" FromRole="Tests" ToRole="Questions" />
           <NavigationProperty Name="TestLevels" Relationship="Self.FK_Tests_TestLevels" FromRole="Tests" ToRole="TestLevels" />
           <NavigationProperty Name="TestResults" Relationship="Self.FK_TestResults_Tests" FromRole="Tests" ToRole="TestResults" />
+        </EntityType>
+        <EntityType Name="SelectedTests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="TestId" Type="Int32" Nullable="false" />
+          <Property Name="AssignedDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -534,6 +554,7 @@
           <EntitySet Name="TestLevels" EntityType="Self.TestLevels" />
           <EntitySet Name="TestResults" EntityType="Self.TestResults" />
           <EntitySet Name="Tests" EntityType="Self.Tests" />
+          <EntitySet Name="SelectedTests" EntityType="Self.SelectedTests" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <AssociationSet Name="FK_Answers_Questions" Association="Self.FK_Answers_Questions">
             <End Role="Questions" EntitySet="Questions" />
@@ -613,6 +634,7 @@
                 <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
                 <ScalarProperty Name="PublishedDate" ColumnName="PublishedDate" />
                 <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="ImageData" ColumnName="ImageData" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -670,6 +692,16 @@
                 <ScalarProperty Name="PassingScore" ColumnName="PassingScore" />
                 <ScalarProperty Name="TimeLimitMinutes" ColumnName="TimeLimitMinutes" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SelectedTests">
+            <EntityTypeMapping TypeName="DBModel.SelectedTests">
+              <MappingFragment StoreEntitySet="SelectedTests">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="AssignedDate" ColumnName="AssignedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

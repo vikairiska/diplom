@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|c:\\users\\user\\source\\repos\\verhozinaivanovdiplom\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\windows\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|c:\\users\\user\\source\\repos\\verhozinaivanovdiplom\\windows\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|solutionrelative:windows\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\windows\\addtestwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|solutionrelative:windows\\addtestwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\windows\\articleviewwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|solutionrelative:windows\\articleviewwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\windows\\addarticlewindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|solutionrelative:windows\\addarticlewindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -29,10 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\pages\\homepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|solutionrelative:pages\\homepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
-      "RelativeMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|solutionrelative:model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 21,
+          "SelectedChildIndex": 17,
           "Children": [
             {
               "$type": "Bookmark",
@@ -110,7 +114,72 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AddTestWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\Windows\\AddTestWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Windows\\AddTestWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\Windows\\AddTestWindow.xaml.cs",
+              "RelativeToolTip": "Windows\\AddTestWindow.xaml.cs",
+              "ViewState": "AgIAAD4BAAAAAAAAAAAgwGQBAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T10:50:09.524Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LoginWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\Windows\\LoginWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Windows\\LoginWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\Windows\\LoginWindow.xaml.cs",
+              "RelativeToolTip": "Windows\\LoginWindow.xaml.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAADgAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T14:38:45.874Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ArticleViewWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\Windows\\ArticleViewWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Windows\\ArticleViewWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\Windows\\ArticleViewWindow.xaml.cs",
+              "RelativeToolTip": "Windows\\ArticleViewWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T10:37:05.932Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AddArticleWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\Windows\\AddArticleWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Windows\\AddArticleWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\Windows\\AddArticleWindow.xaml.cs",
+              "RelativeToolTip": "Windows\\AddArticleWindow.xaml.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAowHcAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T10:35:27.835Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACgAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-17T10:08:18.023Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "LoginWindow.xaml",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\Windows\\LoginWindow.xaml",
               "RelativeDocumentMoniker": "Windows\\LoginWindow.xaml",
@@ -121,7 +190,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "HomePage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\Pages\\HomePage.xaml.cs",
               "RelativeDocumentMoniker": "Pages\\HomePage.xaml.cs",
@@ -133,7 +202,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "HomePage.xaml",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\Pages\\HomePage.xaml",
               "RelativeDocumentMoniker": "Pages\\HomePage.xaml",
@@ -144,43 +213,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\MainWindow.xaml",
-              "RelativeToolTip": "MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-03-17T10:08:18.526Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Model1.edmx [Diagram1]",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\Model1.edmx",
-              "RelativeDocumentMoniker": "Model1.edmx",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\Model1.edmx [Diagram1]",
-              "RelativeToolTip": "Model1.edmx [Diagram1]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
-              "WhenOpened": "2026-03-17T10:27:24.161Z",
-              "EditorCaption": " [Diagram1]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\MainWindow.xaml.cs",
-              "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-17T10:08:18.023Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\App.xaml",
               "RelativeDocumentMoniker": "App.xaml",
@@ -188,18 +221,6 @@
               "RelativeToolTip": "App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-03-25T14:34:13.301Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "LoginWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\Windows\\LoginWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Windows\\LoginWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\VerhozinaIvanovDiplom\\Windows\\LoginWindow.xaml.cs",
-              "RelativeToolTip": "Windows\\LoginWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T14:38:45.874Z"
             }
           ]
         }
