@@ -4,6 +4,8 @@
         Title="Прохождение теста"
         Height="720"
         Width="900"
+        Background="{StaticResource WindowBackgroundBrush}"
+        Foreground="{StaticResource PrimaryTextBrush}"
         WindowStartupLocation="CenterOwner">
     <Grid Margin="16">
         <Grid.RowDefinitions>
@@ -13,7 +15,7 @@
 
         <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <Border BorderBrush="#DDDDDD" BorderThickness="1" CornerRadius="8" Padding="16" Margin="0,0,0,16">
+                <Border Background="#141B26" BorderBrush="#2A3948" BorderThickness="1" CornerRadius="12" Padding="16" Margin="0,0,0,16">
                     <StackPanel>
                         <TextBlock x:Name="TestTitleTextBlock" FontSize="24" FontWeight="Bold"/>
                         <TextBlock x:Name="TestLevelTextBlock" Margin="0,8,0,0" FontWeight="SemiBold"/>

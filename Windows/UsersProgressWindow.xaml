@@ -4,6 +4,8 @@
         Title="Прогресс пользователей"
         Height="560"
         Width="860"
+        Background="{StaticResource WindowBackgroundBrush}"
+        Foreground="{StaticResource PrimaryTextBrush}"
         WindowStartupLocation="CenterOwner">
     <Grid Margin="16">
         <Grid.RowDefinitions>
@@ -20,7 +22,7 @@
                     <GridViewColumn Header="Фото" Width="80">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Border Width="48" Height="48" CornerRadius="24" BorderBrush="#CCCCCC" BorderThickness="1">
+                                <Border Width="48" Height="48" CornerRadius="24" BorderBrush="#2A3948" BorderThickness="1" Background="#141B26">
                                     <Image Source="{Binding Photo}" Stretch="UniformToFill"/>
                                 </Border>
                             </DataTemplate>

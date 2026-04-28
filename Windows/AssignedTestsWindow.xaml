@@ -4,6 +4,8 @@
         Title="Назначенные тесты"
         Height="520"
         Width="820"
+        Background="{StaticResource WindowBackgroundBrush}"
+        Foreground="{StaticResource PrimaryTextBrush}"
         WindowStartupLocation="CenterOwner">
     <Grid Margin="16">
         <Grid.RowDefinitions>

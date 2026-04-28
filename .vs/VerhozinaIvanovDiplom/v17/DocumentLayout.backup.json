@@ -136,7 +136,7 @@
               "RelativeDocumentMoniker": "Windows\\LoginWindow.xaml.cs",
               "ToolTip": "C:\\git\\diplom\\Windows\\LoginWindow.xaml.cs",
               "RelativeToolTip": "Windows\\LoginWindow.xaml.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-25T14:38:45.874Z",
               "EditorCaption": ""
@@ -163,7 +163,8 @@
               "RelativeToolTip": "Windows\\AddArticleWindow.xaml.cs",
               "ViewState": "AgIAAEgAAAAAAAAAAAAowHcAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T10:35:27.835Z"
+              "WhenOpened": "2026-04-07T10:35:27.835Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

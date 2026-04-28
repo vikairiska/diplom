@@ -6,29 +6,44 @@
         xmlns:local="clr-namespace:VerhozinaIvanovDiplom"
         xmlns:pages="clr-namespace:VerhozinaIvanovDiplom.Pages"
         mc:Ignorable="d"
-        Title="Обучение устройству автомобиля" Height="450" Width="800"
+        Title="Обучение устройству автомобиля" Height="680" Width="1180"
+        Background="{StaticResource WindowBackgroundBrush}"
+        Foreground="{StaticResource PrimaryTextBrush}"
         Icon="Resources/app.ico">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0" Style="{StaticResource MenuContainerStyle}">
-            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button x:Name="AddMenuButton" Content="Добавить" Style="{StaticResource MenuButtonStyle}"/>
-                    <Button x:Name="AssignMenuButton" Content="Назначить" Style="{StaticResource MenuButtonStyle}"/>
-                    <Button x:Name="UsersMenuButton" Content="Пользователи" Style="{StaticResource MenuButtonStyle}"/>
-                    <Button x:Name="SearchMenuButton" Content="Найти" Style="{StaticResource MenuButtonStyle}"/>
-                    <Button x:Name="MyProfileMenuButton" Content="Мой профиль" Style="{StaticResource MenuButtonStyle}"/>
-                    <Button x:Name="AssignedTestsMenuButton" Content="Назначенные тесты" Style="{StaticResource MenuButtonStyle}"/>
-                    <Button x:Name="UsersProgressMenuButton" Content="Прогресс пользователей" Style="{StaticResource MenuButtonStyle}"/>
-                    <Button x:Name="LogoutMenuButton" Content="Выйти" Style="{StaticResource MenuButtonStyle}"/>
-                </StackPanel>
-            </ScrollViewer>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Width="48" Height="48" CornerRadius="24" Background="#1A2434" VerticalAlignment="Center" Margin="4,0,14,0">
+                    <Viewbox Width="20" Height="20">
+                        <Path Fill="#E6EEF8" Data="M11,4A7,7 0 0,0 4,11C4,14.87 7.13,18 11,18C14.87,18 18,14.87 18,11C18,7.13 14.87,4 11,4M11,2C15.97,2 20,6.03 20,11C20,15.97 15.97,20 11,20C6.03,20 2,15.97 2,11C2,6.03 6.03,2 11,2M13.2,7.2L9,11.4L7.3,9.7L6,11L9,14L14.5,8.5L13.2,7.2Z"/>
+                    </Viewbox>
+                </Border>
+
+                <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button x:Name="AddMenuButton" Content="Добавить" Style="{StaticResource MenuButtonStyle}"/>
+                        <Button x:Name="AssignMenuButton" Content="Назначить" Style="{StaticResource MenuButtonStyle}"/>
+                        <Button x:Name="UsersMenuButton" Content="Пользователи" Style="{StaticResource MenuButtonStyle}"/>
+                        <Button x:Name="SearchMenuButton" Content="Найти" Style="{StaticResource MenuButtonStyle}"/>
+                        <Button x:Name="MyProfileMenuButton" Content="Мой профиль" Style="{StaticResource MenuButtonStyle}"/>
+                        <Button x:Name="AssignedTestsMenuButton" Content="Назначенные тесты" Style="{StaticResource MenuButtonStyle}"/>
+                        <Button x:Name="UsersProgressMenuButton" Content="Прогресс пользователей" Style="{StaticResource MenuButtonStyle}"/>
+                        <Button x:Name="LogoutMenuButton" Content="Выйти" Style="{StaticResource MenuButtonStyle}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
         </Border>
 
-        <Frame Grid.Row="1" NavigationUIVisibility="Hidden" Source="Pages/HomePage.xaml"/>
+        <Frame Grid.Row="1" NavigationUIVisibility="Hidden" Source="Pages/HomePage.xaml" Margin="16,4,16,16"/>
     </Grid>
 </Window>

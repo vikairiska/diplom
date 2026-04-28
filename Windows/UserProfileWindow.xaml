@@ -4,6 +4,8 @@
         Title="Профиль пользователя"
         Height="760"
         Width="900"
+        Background="{StaticResource WindowBackgroundBrush}"
+        Foreground="{StaticResource PrimaryTextBrush}"
         WindowStartupLocation="CenterOwner">
     <Grid Margin="16">
         <Grid.RowDefinitions>
@@ -22,7 +24,7 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0">
-                <Border BorderThickness="1" BorderBrush="#DDDDDD" CornerRadius="8" Padding="8">
+                <Border BorderThickness="1" BorderBrush="#2A3948" Background="#141B26" CornerRadius="12" Padding="8">
                     <Image x:Name="PhotoImage" Height="180" Stretch="UniformToFill"/>
                 </Border>
                 <Button Content="Выбрать фото"

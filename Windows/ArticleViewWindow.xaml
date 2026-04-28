@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VerhozinaIvanovDiplom.Windows"
         mc:Ignorable="d"
-        Title="Просмотр статьи" Height="760" Width="900"
+        Title="Просмотр статьи" Height="800" Width="1040"
+        Background="{StaticResource WindowBackgroundBrush}"
+        Foreground="{StaticResource PrimaryTextBrush}"
         WindowStartupLocation="CenterOwner">
-    <Grid>
+    <Grid Margin="16,12,16,16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -15,86 +17,103 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Заголовок -->
-        <Border Grid.Row="0" Background="#2C3E50" Padding="20">
-            <TextBlock x:Name="TitleTextBlock" 
-                       Text="Заголовок статьи" 
-                       Foreground="White" 
-                       FontSize="24" 
-                       FontWeight="Bold"
+        <Border Grid.Row="0" CornerRadius="20" Padding="26,24,26,26" BorderThickness="1" BorderBrush="#2A3948">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#161E2A" Offset="0"/>
+                    <GradientStop Color="#112720" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock x:Name="TitleTextBlock"
+                       Text="Заголовок статьи"
+                       FontSize="52"
+                       FontWeight="SemiBold"
+                       Foreground="#F5F8FD"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center"
                        TextWrapping="Wrap"/>
         </Border>
 
-        <Grid Grid.Row="1" Margin="16">
+        <Grid Grid.Row="1" Margin="0,14,0,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="220"/>
+                <RowDefinition Height="270"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Изображение -->
-            <Border Grid.Row="0" Background="#F5F5F5" Margin="0,0,0,12" CornerRadius="8">
+            <Border Grid.Row="0" Background="#141B26" Margin="0,0,0,12" CornerRadius="16" BorderBrush="#2A3948" BorderThickness="1">
                 <Image x:Name="ArticleImage" Stretch="Uniform"/>
             </Border>
 
-            <!-- Основной текст -->
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                <TextBlock x:Name="ContentTextBlock" 
-                           Text="Текст статьи" 
-                           FontSize="14" 
-                           TextWrapping="Wrap"
-                           LineHeight="22"/>
-            </ScrollViewer>
+            <Border Grid.Row="1" CornerRadius="16" Background="#141B26" BorderBrush="#2A3948" BorderThickness="1" Padding="18,14">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <TextBlock x:Name="ContentTextBlock"
+                               Text="Текст статьи"
+                               FontSize="16"
+                               Foreground="#E5ECF7"
+                               TextWrapping="Wrap"
+                               LineHeight="26"/>
+                </ScrollViewer>
+            </Border>
         </Grid>
 
-        <GroupBox Grid.Row="2" Header="Комментарии" Margin="16,0,16,8" Padding="10">
-            <Grid>
+        <GroupBox Grid.Row="2" Header="Комментарии" Margin="0,12,0,8">
+            <Grid Margin="0,8,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <ListBox x:Name="CommentsListBox" Grid.Row="0">
+                <ListBox x:Name="CommentsListBox" Grid.Row="0" BorderThickness="0" Padding="2">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6" Padding="8" Margin="0,0,0,8">
+                            <Border Background="#1A2332" BorderBrush="#2A3948" BorderThickness="1" CornerRadius="10" Padding="10" Margin="0,0,0,8">
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Header}" FontWeight="SemiBold"/>
-                                    <TextBlock Text="{Binding Text}" Margin="0,6,0,0" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding Header}" FontWeight="SemiBold" Foreground="#F0F5FC"/>
+                                    <TextBlock Text="{Binding Text}" Margin="0,6,0,0" TextWrapping="Wrap" Foreground="#BFCCDC"/>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
 
-                <Grid Grid.Row="1" Margin="0,8,0,0">
+                <Grid Grid.Row="1" Margin="0,10,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="NewCommentTextBox" Height="32" Margin="0,0,8,0"/>
-                    <Button Grid.Column="1" Content="Отправить" Width="120" Height="32"
+                    <TextBox x:Name="NewCommentTextBox" Height="38" Margin="0,0,10,0" VerticalContentAlignment="Center"/>
+                    <Button Grid.Column="1" Content="Отправить" Width="138" Height="38"
                             Style="{StaticResource ButtonStyleGreen}"
                             Click="SendCommentButton_Click"/>
                 </Grid>
             </Grid>
         </GroupBox>
 
-        <!-- Кнопки -->
-        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="20">
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
             <Button x:Name="AddTestButton" Content="Добавить тест" Style="{StaticResource ButtonStyleGreen}"
-                    Width="150" Height="35" Margin="0,0,10,0"
+                    Width="150" Height="38" Margin="0,0,10,0"
                     Click="AddTestButton_Click"/>
             <Button x:Name="PassTestButton" Content="Пройти тест" Style="{StaticResource ButtonStyleGreen}"
-                    Width="140" Height="35" Margin="0,0,10,0"
+                    Width="140" Height="38" Margin="0,0,10,0"
                     Click="PassTestButton_Click"/>
-            <Button x:Name="EditButton" Content="Редактировать" Style="{StaticResource ButtonStyleGreen}"
-                    Width="140" Height="35" Margin="0,0,10,0"
-                    Click="EditButton_Click"/>
-            <Button x:Name="DeleteButton" Content="Удалить" Style="{StaticResource ButtonStyleGreen}"
-                    Width="120" Height="35" Margin="0,0,10,0"
-                    Click="DeleteButton_Click"/>
+            <Button x:Name="EditButton" Style="{StaticResource IconButtonStyle}"
+                    ToolTip="Редактировать"
+                    Margin="0,0,10,0"
+                    Click="EditButton_Click">
+                <Viewbox Width="18" Height="18">
+                    <Path Fill="#F4F7FB" Data="{StaticResource EditIconGeometry}"/>
+                </Viewbox>
+            </Button>
+            <Button x:Name="DeleteButton" Style="{StaticResource DangerIconButtonStyle}"
+                    ToolTip="Удалить"
+                    Margin="0,0,10,0"
+                    Click="DeleteButton_Click">
+                <Viewbox Width="18" Height="18">
+                    <Path Fill="#FFFFFF" Data="{StaticResource DeleteIconGeometry}"/>
+                </Viewbox>
+            </Button>
             <Button Content="Закрыть" Style="{StaticResource ButtonStyleGreen}"
-                    Width="120" Height="35"
+                    Width="120" Height="38"
                     Click="CloseButton_Click"/>
         </StackPanel>
     </Grid>
