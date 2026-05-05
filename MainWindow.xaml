@@ -34,7 +34,14 @@
                         <Button x:Name="AddMenuButton" Content="Добавить" Style="{StaticResource MenuButtonStyle}"/>
                         <Button x:Name="AssignMenuButton" Content="Назначить" Style="{StaticResource MenuButtonStyle}"/>
                         <Button x:Name="UsersMenuButton" Content="Пользователи" Style="{StaticResource MenuButtonStyle}"/>
-                        <Button x:Name="SearchMenuButton" Content="Найти" Style="{StaticResource MenuButtonStyle}"/>
+                        <Button x:Name="SearchMenuButton" Style="{StaticResource MenuButtonStyle}" ToolTip="Найти">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Viewbox Width="16" Height="16">
+                                    <Path Fill="#DCE8F6"
+                                          Data="M9.5,2A7.5,7.5 0 0,1 17,9.5C17,11.29 16.37,12.93 15.31,14.21L19.3,18.2L18.2,19.3L14.21,15.31C12.93,16.37 11.29,17 9.5,17A7.5,7.5 0 0,1 2,9.5A7.5,7.5 0 0,1 9.5,2M9.5,3.6A5.9,5.9 0 0,0 3.6,9.5A5.9,5.9 0 0,0 9.5,15.4A5.9,5.9 0 0,0 15.4,9.5A5.9,5.9 0 0,0 9.5,3.6Z"/>
+                                </Viewbox>
+                            </StackPanel>
+                        </Button>
                         <Button x:Name="MyProfileMenuButton" Content="Мой профиль" Style="{StaticResource MenuButtonStyle}"/>
                         <Button x:Name="AssignedTestsMenuButton" Content="Назначенные тесты" Style="{StaticResource MenuButtonStyle}"/>
                         <Button x:Name="UsersProgressMenuButton" Content="Прогресс пользователей" Style="{StaticResource MenuButtonStyle}"/>

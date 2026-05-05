@@ -36,6 +36,14 @@
           <Property Name="PublishedDate" Type="datetime2" Precision="7" />
           <Property Name="IsPublished" Type="bit" />
           <Property Name="ImageData" Type="varbinary(max)" />
+          <Property Name="CarPartId" Type="int" />
+        </EntityType>
+        <EntityType Name="CarParts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Questions">
           <Key>
@@ -151,6 +159,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Articles_CarParts">
+          <End Role="CarParts" Type="Self.CarParts" Multiplicity="0..1" />
+          <End Role="Articles" Type="Self.Articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarParts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Articles">
+              <PropertyRef Name="CarPartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Articles_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Articles" Type="Self.Articles" Multiplicity="*" />
@@ -241,6 +261,7 @@
           <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ArticleComments" EntityType="Self.ArticleComments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarParts" EntityType="Self.CarParts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SelectedTests" EntityType="Self.SelectedTests" Schema="dbo" store:Type="Tables" />
@@ -259,6 +280,10 @@
           <AssociationSet Name="FK_ArticleComments_Users" Association="Self.FK_ArticleComments_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="ArticleComments" EntitySet="ArticleComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articles_CarParts" Association="Self.FK_Articles_CarParts">
+            <End Role="CarParts" EntitySet="CarParts" />
+            <End Role="Articles" EntitySet="Articles" />
           </AssociationSet>
           <AssociationSet Name="FK_Articles_Users" Association="Self.FK_Articles_Users">
             <End Role="Users" EntitySet="Users" />
@@ -327,9 +352,19 @@
           <Property Name="PublishedDate" Type="DateTime" Precision="7" />
           <Property Name="IsPublished" Type="Boolean" />
           <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CarPartId" Type="Int32" />
           <NavigationProperty Name="ArticleComments" Relationship="Self.FK_ArticleComments_Articles" FromRole="Articles" ToRole="ArticleComments" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Articles_Users" FromRole="Articles" ToRole="Users" />
+          <NavigationProperty Name="CarParts" Relationship="Self.FK_Articles_CarParts" FromRole="Articles" ToRole="CarParts" />
           <NavigationProperty Name="Tests" Relationship="Self.FK_Tests_Articles" FromRole="Articles" ToRole="Tests" />
+        </EntityType>
+        <EntityType Name="CarParts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Articles" Relationship="Self.FK_Articles_CarParts" FromRole="CarParts" ToRole="Articles" />
         </EntityType>
         <EntityType Name="Questions">
           <Key>
@@ -471,6 +506,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Articles_CarParts">
+          <End Role="CarParts" Type="Self.CarParts" Multiplicity="0..1" />
+          <End Role="Articles" Type="Self.Articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarParts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Articles">
+              <PropertyRef Name="CarPartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tests_Articles">
           <End Role="Articles" Type="Self.Articles" Multiplicity="0..1" />
           <End Role="Tests" Type="Self.Tests" Multiplicity="*" />
@@ -549,6 +596,7 @@
           <EntitySet Name="Answers" EntityType="Self.Answers" />
           <EntitySet Name="ArticleComments" EntityType="Self.ArticleComments" />
           <EntitySet Name="Articles" EntityType="Self.Articles" />
+          <EntitySet Name="CarParts" EntityType="Self.CarParts" />
           <EntitySet Name="Questions" EntityType="Self.Questions" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="TestLevels" EntityType="Self.TestLevels" />
@@ -570,6 +618,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Articles_Users" Association="Self.FK_Articles_Users">
             <End Role="Users" EntitySet="Users" />
+            <End Role="Articles" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articles_CarParts" Association="Self.FK_Articles_CarParts">
+            <End Role="CarParts" EntitySet="CarParts" />
             <End Role="Articles" EntitySet="Articles" />
           </AssociationSet>
           <AssociationSet Name="FK_Tests_Articles" Association="Self.FK_Tests_Articles">
@@ -635,6 +687,15 @@
                 <ScalarProperty Name="PublishedDate" ColumnName="PublishedDate" />
                 <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
                 <ScalarProperty Name="ImageData" ColumnName="ImageData" />
+                <ScalarProperty Name="CarPartId" ColumnName="CarPartId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarParts">
+            <EntityTypeMapping TypeName="DBModel.CarParts">
+              <MappingFragment StoreEntitySet="CarParts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -734,7 +795,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
       </DesignerInfoPropertySet>

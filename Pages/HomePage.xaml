@@ -14,7 +14,29 @@
     </Page.Resources>
 
     <Grid Margin="0">
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="8,10,8,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border x:Name="UserBackPanel"
+                Grid.Row="0"
+                Visibility="Collapsed"
+                Margin="8,8,8,0"
+                Background="Transparent">
+            <Button x:Name="BackToCarButton"
+                    Content="Назад к автомобилю"
+                    Style="{StaticResource ButtonStyleGreen}"
+                    Width="180"
+                    Height="34"
+                    HorizontalAlignment="Left"
+                    Click="BackToCarButton_Click"/>
+        </Border>
+
+        <ScrollViewer x:Name="ArticlesScrollViewer"
+                      Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      Padding="8,10,8,0">
             <ItemsControl x:Name="ArticlesItemsControl">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -25,11 +47,11 @@
                             <Border.Background>
                                 <Binding Path="ImageData" Converter="{StaticResource ImageDataToImageBrushConverter}"/>
                             </Border.Background>
-                            
+
                             <Border.Effect>
                                 <DropShadowEffect ShadowDepth="0" BlurRadius="14" Color="#000000" Opacity="0.38"/>
                             </Border.Effect>
-                            
+
                             <Grid>
                                 <Rectangle RadiusX="18" RadiusY="18">
                                     <Rectangle.Fill>
@@ -39,7 +61,7 @@
                                         </LinearGradientBrush>
                                     </Rectangle.Fill>
                                 </Rectangle>
-                                
+
                                 <StackPanel VerticalAlignment="Center" Margin="24,0,24,0">
                                     <TextBlock Text="{Binding Title}"
                                                Foreground="#F7FBFF"
@@ -56,13 +78,32 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        
-        <TextBlock x:Name="NoArticlesText" 
-                   Text="Статьи пока не добавлены" 
+
+        <TextBlock x:Name="NoArticlesText"
+                   Grid.Row="1"
+                   Text="Статьи пока не добавлены"
                    FontSize="20"
                    Foreground="#8EA2B8"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Visibility="Collapsed"/>
+
+        <Border x:Name="UserHeroPanel"
+                Grid.Row="1"
+                Visibility="Collapsed"
+                Background="{StaticResource CarHeroBackgroundBrush}">
+            <Grid x:Name="UserHeroHost"
+                  SizeChanged="UserHeroHost_SizeChanged">
+                <Image x:Name="UserHeroImage"
+                       Stretch="Uniform"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch"
+                       Loaded="UserHeroImage_Loaded"
+                       RenderOptions.BitmapScalingMode="HighQuality"/>
+                <Canvas x:Name="HotspotsCanvas"
+                        IsHitTestVisible="True"
+                        Background="Transparent"/>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

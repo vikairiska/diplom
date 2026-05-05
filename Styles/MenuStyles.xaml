@@ -4,6 +4,7 @@
     <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#0D1018"/>
     <SolidColorBrush x:Key="CardBackgroundBrush" Color="#161C28"/>
     <SolidColorBrush x:Key="SurfaceBackgroundBrush" Color="#111721"/>
+    <SolidColorBrush x:Key="CarHeroBackgroundBrush" Color="#050F0F"/>
     <SolidColorBrush x:Key="ControlBorderBrush" Color="#2A3940"/>
     <SolidColorBrush x:Key="PrimaryTextBrush" Color="#F4F7FB"/>
     <SolidColorBrush x:Key="SecondaryTextBrush" Color="#A6B4C8"/>

@@ -1,6 +1,7 @@
 using Microsoft.Win32;
 using System;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
@@ -11,18 +12,26 @@ namespace VerhozinaIvanovDiplom.Windows
     /// </summary>
     public partial class AddArticleWindow : Window
     {
+        private sealed class CarPartOption
+        {
+            public int? Id { get; set; }
+            public string DisplayName { get; set; }
+        }
+
         private string selectedImagePath;
         private Articles articleToEdit;
 
         public AddArticleWindow()
         {
             InitializeComponent();
+            Loaded += OnWindowLoaded;
         }
 
         public AddArticleWindow(Articles article)
         {
             InitializeComponent();
             articleToEdit = article;
+            Loaded += OnWindowLoaded;
 
             // Заполняем поля существующими данными
             TitleTextBox.Text = article.Title;
@@ -55,6 +64,56 @@ namespace VerhozinaIvanovDiplom.Windows
             SaveButton.Visibility = Visibility.Collapsed;
 
             Title = "Редактирование статьи";
+        }
+
+        private void OnWindowLoaded(object sender, RoutedEventArgs e)
+        {
+            Loaded -= OnWindowLoaded;
+            PopulateCarPartCombo();
+        }
+
+        private void PopulateCarPartCombo()
+        {
+            CarPartComboBox.Items.Clear();
+            CarPartComboBox.DisplayMemberPath = "DisplayName";
+
+            try
+            {
+                using (var context = new DBEntities())
+                {
+                    CarPartComboBox.Items.Add(new CarPartOption { Id = null, DisplayName = "Не выбрано" });
+                    foreach (var part in context.CarParts.OrderBy(p => p.Id))
+                        CarPartComboBox.Items.Add(new CarPartOption { Id = part.Id, DisplayName = part.Name });
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"Не удалось загрузить части автомобиля. Выполните скрипт CarParts.sql в базе данных.\n\n{ex.Message}",
+                    "База данных",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                CarPartComboBox.Items.Add(new CarPartOption { Id = null, DisplayName = "Не выбрано" });
+            }
+
+            if (articleToEdit?.CarPartId is int selectedId)
+            {
+                foreach (CarPartOption opt in CarPartComboBox.Items)
+                {
+                    if (opt.Id == selectedId)
+                    {
+                        CarPartComboBox.SelectedItem = opt;
+                        return;
+                    }
+                }
+            }
+
+            CarPartComboBox.SelectedIndex = 0;
+        }
+
+        private int? GetSelectedCarPartId()
+        {
+            return (CarPartComboBox.SelectedItem as CarPartOption)?.Id;
         }
 
         private void SelectImageButton_Click(object sender, RoutedEventArgs e)
@@ -126,7 +185,8 @@ namespace VerhozinaIvanovDiplom.Windows
                     Content = ContentTextBox.Text.Trim(),
                     PublishedDate = DateTime.Now,
                     IsPublished = true,
-                    ImageData = imageBytes
+                    ImageData = imageBytes,
+                    CarPartId = GetSelectedCarPartId()
                 };
 
                 // Сохранение в базу данных
@@ -179,6 +239,7 @@ namespace VerhozinaIvanovDiplom.Windows
                 // Обновляем статью
                 articleToEdit.Title = TitleTextBox.Text.Trim();
                 articleToEdit.Content = ContentTextBox.Text.Trim();
+                articleToEdit.CarPartId = GetSelectedCarPartId();
 
                 // Обновляем изображение, если выбрано новое
                 if (!string.IsNullOrEmpty(selectedImagePath))

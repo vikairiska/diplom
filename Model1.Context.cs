@@ -28,6 +28,7 @@ namespace VerhozinaIvanovDiplom
         public virtual DbSet<Answers> Answers { get; set; }
         public virtual DbSet<ArticleComments> ArticleComments { get; set; }
         public virtual DbSet<Articles> Articles { get; set; }
+        public virtual DbSet<CarParts> CarParts { get; set; }
         public virtual DbSet<Questions> Questions { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<TestLevels> TestLevels { get; set; }

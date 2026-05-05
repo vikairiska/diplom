@@ -12,29 +12,18 @@ namespace VerhozinaIvanovDiplom
     using System;
     using System.Collections.Generic;
     
-    public partial class Articles
+    public partial class CarParts
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Articles()
+        public CarParts()
         {
-            this.ArticleComments = new HashSet<ArticleComments>();
-            this.Tests = new HashSet<Tests>();
+            this.Articles = new HashSet<Articles>();
         }
     
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string Content { get; set; }
-        public Nullable<int> AuthorId { get; set; }
-        public Nullable<System.DateTime> PublishedDate { get; set; }
-        public Nullable<bool> IsPublished { get; set; }
-        public byte[] ImageData { get; set; }
-        public Nullable<int> CarPartId { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ArticleComments> ArticleComments { get; set; }
-        public virtual Users Users { get; set; }
-        public virtual CarParts CarParts { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tests> Tests { get; set; }
+        public virtual ICollection<Articles> Articles { get; set; }
     }
 }

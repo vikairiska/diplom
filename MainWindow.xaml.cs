@@ -42,7 +42,6 @@ namespace VerhozinaIvanovDiplom
             AddMenuButton.Visibility = Visibility.Collapsed;
             AssignMenuButton.Visibility = Visibility.Collapsed;
             UsersMenuButton.Visibility = Visibility.Collapsed;
-            SearchMenuButton.Visibility = Visibility.Collapsed;
             UsersProgressMenuButton.Visibility = Visibility.Collapsed;
         }
 
@@ -50,9 +49,9 @@ namespace VerhozinaIvanovDiplom
         {
             if (e.OriginalSource is Button button)
             {
-                switch (button.Content)
+                switch (button.Name)
                 {
-                    case "Добавить":
+                    case "AddMenuButton":
                         var addWindow = new Windows.AddArticleWindow();
                         addWindow.Owner = this;
                         addWindow.ShowDialog();
@@ -67,25 +66,25 @@ namespace VerhozinaIvanovDiplom
                             }
                         }
                         break;
-                    case "Назначить":
+                    case "AssignMenuButton":
                         OpenAssignTests();
                         break;
-                    case "Пользователи":
+                    case "UsersMenuButton":
                         // TODO: Открытие окна пользователей
                         break;
-                    case "Найти":
-                        // TODO: Логика поиска
+                    case "SearchMenuButton":
+                        OpenSearchArticles();
                         break;
-                    case "Мой профиль":
+                    case "MyProfileMenuButton":
                         OpenMyProfile();
                         break;
-                    case "Назначенные тесты":
+                    case "AssignedTestsMenuButton":
                         OpenAssignedTests();
                         break;
-                    case "Прогресс пользователей":
+                    case "UsersProgressMenuButton":
                         OpenUsersProgress();
                         break;
-                    case "Выйти":
+                    case "LogoutMenuButton":
                         Logout();
                         break;
                 }
@@ -132,6 +131,21 @@ namespace VerhozinaIvanovDiplom
             var assignedTestsWindow = new AssignedTestsWindow(SessionContext.CurrentUserId.Value);
             assignedTestsWindow.Owner = this;
             assignedTestsWindow.ShowDialog();
+        }
+
+        private void OpenSearchArticles()
+        {
+            var searchWindow = new SearchArticleWindow();
+            searchWindow.Owner = this;
+            if (searchWindow.ShowDialog() != true)
+                return;
+
+            if (!(this.Content is Grid grid))
+                return;
+
+            var frame = grid.Children.OfType<System.Windows.Controls.Frame>().FirstOrDefault();
+            if (frame?.Content is Pages.HomePage homePage)
+                homePage.ApplyTitleFilter(searchWindow.SearchText);
         }
 
         private void Logout()
