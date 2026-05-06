@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\git\\diplom\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|C:\\git\\diplom\\windows\\addarticlewindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|solutionrelative:windows\\addarticlewindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|c:\\git\\diplom\\windows\\addarticlewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|solutionrelative:windows\\addarticlewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|C:\\git\\diplom\\styles\\menustyles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|solutionrelative:styles\\menustyles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|C:\\git\\diplom\\windows\\addarticlewindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|solutionrelative:windows\\addarticlewindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{86E74876-D4F5-4970-A28E-1C96E0520665}|VerhozinaIvanovDiplom.csproj|C:\\git\\diplom\\pages\\homepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 16,
+          "SelectedChildIndex": 21,
           "Children": [
             {
               "$type": "Bookmark",
@@ -118,7 +118,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AddArticleWindow.xaml",
               "DocumentMoniker": "C:\\git\\diplom\\Windows\\AddArticleWindow.xaml",
               "RelativeDocumentMoniker": "Windows\\AddArticleWindow.xaml",
@@ -130,7 +130,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MenuStyles.xaml",
               "DocumentMoniker": "C:\\git\\diplom\\Styles\\MenuStyles.xaml",
               "RelativeDocumentMoniker": "Styles\\MenuStyles.xaml",
@@ -178,13 +178,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "AddArticleWindow.xaml.cs",
               "DocumentMoniker": "C:\\git\\diplom\\Windows\\AddArticleWindow.xaml.cs",
               "RelativeDocumentMoniker": "Windows\\AddArticleWindow.xaml.cs",
               "ToolTip": "C:\\git\\diplom\\Windows\\AddArticleWindow.xaml.cs",
               "RelativeToolTip": "Windows\\AddArticleWindow.xaml.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAowHcAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAowHIAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-07T10:35:27.835Z",
               "EditorCaption": ""

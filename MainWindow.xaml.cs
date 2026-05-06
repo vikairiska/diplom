@@ -34,6 +34,7 @@ namespace VerhozinaIvanovDiplom
         {
             if (SessionContext.IsAdmin)
             {
+                UsersMenuButton.Visibility = Visibility.Collapsed;
                 MyProfileMenuButton.Visibility = Visibility.Collapsed;
                 AssignedTestsMenuButton.Visibility = Visibility.Collapsed;
                 return;

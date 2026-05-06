@@ -166,8 +166,15 @@
         </StackPanel>
 
         <!-- Основной текст -->
-        <StackPanel Grid.Row="3" Margin="0,0,0,5">
-            <TextBlock Text="Основной текст:" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,5"/>
+        <StackPanel Grid.Row="3" Margin="0,0,0,8">
+            <TextBlock Text="Основной текст:" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <Button x:Name="InsertInlineImageButton"
+                    Content="Вставить изображение в текст"
+                    Style="{StaticResource ButtonStyleGreen}"
+                    Width="240"
+                    Height="34"
+                    HorizontalAlignment="Left"
+                    Click="InsertInlineImageButton_Click"/>
         </StackPanel>
         
         <TextBox x:Name="ContentTextBox" Grid.Row="4" FontSize="13" Padding="10" 

@@ -40,6 +40,17 @@ namespace VerhozinaIvanovDiplom.Windows
                         return;
                     }
 
+                    var articleId = test.ArticleId ?? 0;
+                    if (SessionContext.IsUser && articleId > 0 && !SessionContext.IsArticleRead(articleId))
+                    {
+                        MessageBox.Show("Перед прохождением теста откройте и прочитайте соответствующую статью.",
+                            "Доступ к тесту ограничен",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                        Close();
+                        return;
+                    }
+
                     _passingScore = test.PassingScore;
                     TestTitleTextBlock.Text = test.Title;
                     var levelName = context.TestLevels

@@ -2,8 +2,10 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace VerhozinaIvanovDiplom.Windows
 {
@@ -49,8 +51,11 @@ namespace VerhozinaIvanovDiplom.Windows
                     if (article != null)
                     {
                         _article = article;
+                        if (SessionContext.IsUser)
+                            SessionContext.MarkArticleAsRead(_articleId);
+
                         TitleTextBlock.Text = article.Title;
-                        ContentTextBlock.Text = article.Content;
+                        RenderArticleContent(article.Content);
 
                         // Загрузка изображения
                         if (article.ImageData != null && article.ImageData.Length > 0)
@@ -249,6 +254,84 @@ namespace VerhozinaIvanovDiplom.Windows
             {
                 MessageBox.Show($"Ошибка сохранения комментария: {ex.Message}", "Ошибка",
                     MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void RenderArticleContent(string content)
+        {
+            ContentPanel.Children.Clear();
+
+            if (string.IsNullOrWhiteSpace(content))
+                return;
+
+            var imageRegex = new Regex(@"!\[[^\]]*\]\((?<path>[^)]+)\)", RegexOptions.IgnoreCase);
+            var currentIndex = 0;
+
+            foreach (Match match in imageRegex.Matches(content))
+            {
+                AddTextBlock(content.Substring(currentIndex, match.Index - currentIndex));
+                AddInlineImage(match.Groups["path"].Value);
+                currentIndex = match.Index + match.Length;
+            }
+
+            AddTextBlock(content.Substring(currentIndex));
+        }
+
+        private void AddTextBlock(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                return;
+
+            ContentPanel.Children.Add(new TextBlock
+            {
+                Text = text.Trim(),
+                FontSize = 16,
+                Foreground = System.Windows.Media.Brushes.WhiteSmoke,
+                TextWrapping = TextWrapping.Wrap,
+                LineHeight = 26,
+                Margin = new Thickness(0, 0, 0, 10)
+            });
+        }
+
+        private void AddInlineImage(string rawPath)
+        {
+            try
+            {
+                var normalizedPath = Uri.UnescapeDataString(rawPath.Trim());
+                var fileName = Path.GetFileName(normalizedPath);
+                var fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ArticleMedia", fileName);
+
+                if (!File.Exists(fullPath))
+                    return;
+
+                var bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(fullPath);
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.EndInit();
+
+                var inlineImage = new Image
+                {
+                    Source = bitmap,
+                    Stretch = System.Windows.Media.Stretch.Uniform,
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    VerticalAlignment = VerticalAlignment.Top,
+                    MaxHeight = 380
+                };
+
+                ContentPanel.Children.Add(new Border
+                {
+                    Margin = new Thickness(0, 4, 0, 14),
+                    BorderBrush = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(42, 57, 72)),
+                    BorderThickness = new Thickness(1),
+                    CornerRadius = new CornerRadius(10),
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    Child = inlineImage
+                });
+            }
+            catch
+            {
+                // Пропускаем поврежденные ссылки на изображения в контенте.
             }
         }
 

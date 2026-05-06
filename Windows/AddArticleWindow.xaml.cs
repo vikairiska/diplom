@@ -149,6 +149,51 @@ namespace VerhozinaIvanovDiplom.Windows
             }
         }
 
+        private void InsertInlineImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = "Изображения|*.jpg;*.jpeg;*.png;*.bmp;*.gif|Все файлы|*.*",
+                Title = "Выберите изображение для вставки в статью"
+            };
+
+            if (openFileDialog.ShowDialog() != true)
+                return;
+
+            try
+            {
+                var markup = SaveInlineImageAndGetMarkup(openFileDialog.FileName);
+                var insertionText = Environment.NewLine + markup + Environment.NewLine;
+                var caretIndex = ContentTextBox.CaretIndex;
+
+                ContentTextBox.Text = ContentTextBox.Text.Insert(caretIndex, insertionText);
+                ContentTextBox.CaretIndex = caretIndex + insertionText.Length;
+                ContentTextBox.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка вставки изображения: {ex.Message}", "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private static string SaveInlineImageAndGetMarkup(string sourceFilePath)
+        {
+            var mediaDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ArticleMedia");
+            Directory.CreateDirectory(mediaDirectory);
+
+            var extension = Path.GetExtension(sourceFilePath);
+            if (string.IsNullOrWhiteSpace(extension))
+                extension = ".png";
+
+            var fileName = $"{Guid.NewGuid():N}{extension}";
+            var targetPath = Path.Combine(mediaDirectory, fileName);
+            File.Copy(sourceFilePath, targetPath, true);
+
+            var escapedFileName = Uri.EscapeDataString(fileName);
+            return $"![image](media/{escapedFileName})";
+        }
+
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             // Валидация
