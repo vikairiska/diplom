@@ -63,7 +63,24 @@
                         <DataTemplate>
                             <Border Background="#1A2332" BorderBrush="#2A3948" BorderThickness="1" CornerRadius="10" Padding="10" Margin="0,0,0,8">
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Header}" FontWeight="SemiBold" Foreground="#F0F5FC"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Header}" FontWeight="SemiBold" Foreground="#F0F5FC" VerticalAlignment="Center"/>
+                                        <Button Grid.Column="1"
+                                                Style="{StaticResource DangerIconButtonStyle}"
+                                                ToolTip="Удалить комментарий"
+                                                Margin="10,0,0,0"
+                                                Visibility="{Binding DeleteVisibility}"
+                                                Tag="{Binding CommentId}"
+                                                Click="DeleteCommentButton_Click">
+                                            <Viewbox Width="16" Height="16">
+                                                <Path Fill="#FFFFFF" Data="{StaticResource DeleteIconGeometry}"/>
+                                            </Viewbox>
+                                        </Button>
+                                    </Grid>
                                     <TextBlock Text="{Binding Text}" Margin="0,6,0,0" TextWrapping="Wrap" Foreground="#BFCCDC"/>
                                 </StackPanel>
                             </Border>
@@ -79,6 +96,7 @@
                     <TextBox x:Name="NewCommentTextBox" Height="38" Margin="0,0,10,0" VerticalContentAlignment="Center"/>
                     <Button Grid.Column="1" Content="Отправить" Width="138" Height="38"
                             Style="{StaticResource ButtonStyleGreen}"
+                            IsDefault="True"
                             Click="SendCommentButton_Click"/>
                 </Grid>
             </Grid>

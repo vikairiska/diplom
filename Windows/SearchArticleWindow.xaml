@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Поиск статьи"
-        Height="190"
-        Width="460"
-        MinHeight="190"
-        MinWidth="420"
+        Height="230"
+        Width="560"
+        MinHeight="230"
+        MinWidth="520"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
         Background="{StaticResource WindowBackgroundBrush}"
         Foreground="{StaticResource PrimaryTextBrush}">
-    <Grid Margin="20,16,20,16">
+    <Grid Margin="20,16,20,20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -36,23 +36,36 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
                     Margin="0,16,0,0">
-            <Button Content="Сбросить"
-                    Style="{StaticResource ButtonStyleGreen}"
-                    Width="110"
-                    Height="34"
+            <Button Style="{StaticResource ButtonStyleGreen}"
+                    Width="128"
+                    Height="40"
+                    Padding="0"
                     Margin="0,0,10,0"
-                    Click="ResetButton_Click"/>
-            <Button Content="Отмена"
-                    Style="{StaticResource ButtonStyleGreen}"
-                    Width="110"
-                    Height="34"
+                    Click="ResetButton_Click">
+                <TextBlock Text="Сбросить"
+                           TextAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Button>
+            <Button Style="{StaticResource ButtonStyleGreen}"
+                    Width="128"
+                    Height="40"
+                    Padding="0"
                     Margin="0,0,10,0"
-                    Click="CancelButton_Click"/>
-            <Button Content="Найти"
-                    Style="{StaticResource ButtonStyleGreen}"
-                    Width="110"
-                    Height="34"
-                    Click="SearchButton_Click"/>
+                    Click="CancelButton_Click">
+                <TextBlock Text="Отмена"
+                           TextAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Button>
+            <Button Style="{StaticResource ButtonStyleGreen}"
+                    Width="128"
+                    Height="40"
+                    Padding="0"
+                    IsDefault="True"
+                    Click="SearchButton_Click">
+                <TextBlock Text="Найти"
+                           TextAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

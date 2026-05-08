@@ -213,8 +213,10 @@
         <Setter Property="Foreground" Value="{StaticResource PrimaryTextBrush}"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="Padding" Value="16,9"/>
+        <Setter Property="Padding" Value="18,7"/>
         <Setter Property="Margin" Value="4,0"/>
+        <Setter Property="MinWidth" Value="138"/>
+        <Setter Property="MinHeight" Value="40"/>
         <Setter Property="BorderBrush" Value="#487363"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Cursor" Value="Hand"/>
@@ -285,13 +287,17 @@
 
     <Style x:Key="IconButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyleGreen}">
         <Setter Property="Width" Value="44"/>
-        <Setter Property="Height" Value="38"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="MinWidth" Value="44"/>
+        <Setter Property="MinHeight" Value="40"/>
         <Setter Property="Padding" Value="0"/>
     </Style>
 
     <Style x:Key="DangerIconButtonStyle" TargetType="Button" BasedOn="{StaticResource DangerButtonStyle}">
         <Setter Property="Width" Value="44"/>
-        <Setter Property="Height" Value="38"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="MinWidth" Value="44"/>
+        <Setter Property="MinHeight" Value="40"/>
         <Setter Property="Padding" Value="0"/>
     </Style>
 

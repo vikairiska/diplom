@@ -147,7 +147,9 @@ namespace VerhozinaIvanovDiplom.Windows
                 Width = 220,
                 Margin = new Thickness(8, 0, 0, 0),
                 DisplayMemberPath = "Label",
-                SelectedValuePath = "Value"
+                SelectedValuePath = "Value",
+                Style = (Style)FindResource("StyledComboBoxStyle"),
+                ItemContainerStyle = (Style)FindResource("StyledComboBoxItemStyle")
             };
             state.TypeComboBox.Items.Add(new AnswerTypeItem { Label = "Один из списка", Value = 1 });
             state.TypeComboBox.Items.Add(new AnswerTypeItem { Label = "Несколько из списка", Value = 2 });

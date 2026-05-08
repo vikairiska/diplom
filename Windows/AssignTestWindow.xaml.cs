@@ -34,7 +34,10 @@ namespace VerhozinaIvanovDiplom.Windows
                     : Enumerable.Empty<PickerItem>().ToList();
 
                 var tests = context.Tests
-                    .Where(t => t.IsActive ?? true)
+                    .Where(t =>
+                        (t.IsActive ?? true) &&
+                        t.ArticleId.HasValue &&
+                        context.Articles.Any(a => a.Id == t.ArticleId.Value))
                     .OrderBy(t => t.Title)
                     .Select(t => new PickerItem
                     {

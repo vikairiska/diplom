@@ -28,7 +28,7 @@
                     Content="Назад к автомобилю"
                     Style="{StaticResource ButtonStyleGreen}"
                     Width="180"
-                    Height="34"
+                    Height="40"
                     HorizontalAlignment="Left"
                     Click="BackToCarButton_Click"/>
         </Border>

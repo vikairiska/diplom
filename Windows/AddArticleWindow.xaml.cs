@@ -25,6 +25,8 @@ namespace VerhozinaIvanovDiplom.Windows
         {
             InitializeComponent();
             Loaded += OnWindowLoaded;
+            SaveButton.IsDefault = true;
+            EditButton.IsDefault = false;
         }
 
         public AddArticleWindow(Articles article)
@@ -62,6 +64,8 @@ namespace VerhozinaIvanovDiplom.Windows
             EditButton.Visibility = Visibility.Visible;
             DeleteButton.Visibility = Visibility.Visible;
             SaveButton.Visibility = Visibility.Collapsed;
+            EditButton.IsDefault = true;
+            SaveButton.IsDefault = false;
 
             Title = "Редактирование статьи";
         }
@@ -325,12 +329,8 @@ namespace VerhozinaIvanovDiplom.Windows
                 {
                     using (var context = new DBEntities())
                     {
-                        var article = context.Articles.Find(articleToEdit.Id);
-                        if (article != null)
-                        {
-                            context.Articles.Remove(article);
-                            context.SaveChanges();
-                        }
+                        DeleteArticleWithDependencies(context, articleToEdit.Id);
+                        context.SaveChanges();
                     }
 
                     MessageBox.Show("Статья успешно удалена!", "Успех",
@@ -345,6 +345,53 @@ namespace VerhozinaIvanovDiplom.Windows
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private static void DeleteArticleWithDependencies(DBEntities context, int articleId)
+        {
+            var testIds = context.Tests
+                .Where(t => t.ArticleId == articleId)
+                .Select(t => t.Id)
+                .ToList();
+
+            if (testIds.Count > 0)
+            {
+                var questionIds = context.Questions
+                    .Where(q => testIds.Contains(q.TestId))
+                    .Select(q => q.Id)
+                    .ToList();
+
+                if (questionIds.Count > 0)
+                {
+                    var answers = context.Answers.Where(a => questionIds.Contains(a.QuestionId)).ToList();
+                    if (answers.Count > 0)
+                        context.Answers.RemoveRange(answers);
+
+                    var questions = context.Questions.Where(q => questionIds.Contains(q.Id)).ToList();
+                    if (questions.Count > 0)
+                        context.Questions.RemoveRange(questions);
+                }
+
+                var selectedTests = context.SelectedTests.Where(s => testIds.Contains(s.TestId)).ToList();
+                if (selectedTests.Count > 0)
+                    context.SelectedTests.RemoveRange(selectedTests);
+
+                var testResults = context.TestResults.Where(r => testIds.Contains(r.TestId)).ToList();
+                if (testResults.Count > 0)
+                    context.TestResults.RemoveRange(testResults);
+
+                var tests = context.Tests.Where(t => testIds.Contains(t.Id)).ToList();
+                if (tests.Count > 0)
+                    context.Tests.RemoveRange(tests);
+            }
+
+            var comments = context.ArticleComments.Where(c => c.ArticleId == articleId).ToList();
+            if (comments.Count > 0)
+                context.ArticleComments.RemoveRange(comments);
+
+            var article = context.Articles.Find(articleId);
+            if (article != null)
+                context.Articles.Remove(article);
         }
     }
 }

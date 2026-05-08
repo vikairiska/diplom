@@ -95,6 +95,8 @@ namespace VerhozinaIvanovDiplom.Windows
                                        orderby comment.CreatedDate descending
                                        select new
                                        {
+                                           comment.Id,
+                                           comment.UserId,
                                            UserName = user.FullName,
                                            UserLogin = user.Login,
                                            comment.Text,
@@ -103,8 +105,12 @@ namespace VerhozinaIvanovDiplom.Windows
 
                     var items = rawComments.Select(c => new CommentItem
                     {
+                        CommentId = c.Id,
                         Header = $"{(string.IsNullOrWhiteSpace(c.UserName) ? c.UserLogin : c.UserName)} ({c.UserLogin}) - {(c.CreatedDate.HasValue ? c.CreatedDate.Value.ToString("dd.MM.yyyy HH:mm") : "-")}",
-                        Text = c.Text
+                        Text = c.Text,
+                        DeleteVisibility = (SessionContext.IsAdmin || (SessionContext.CurrentUserId.HasValue && SessionContext.CurrentUserId.Value == c.UserId))
+                            ? Visibility.Visible
+                            : Visibility.Collapsed
                     }).ToList();
 
                     CommentsListBox.ItemsSource = items;
@@ -194,12 +200,8 @@ namespace VerhozinaIvanovDiplom.Windows
                 {
                     using (var context = new DBEntities())
                     {
-                        var article = context.Articles.Find(_articleId);
-                        if (article != null)
-                        {
-                            context.Articles.Remove(article);
-                            context.SaveChanges();
-                        }
+                        DeleteArticleWithDependencies(context, _articleId);
+                        context.SaveChanges();
                     }
 
                     MessageBox.Show("Статья успешно удалена!", "Успех",
@@ -214,6 +216,53 @@ namespace VerhozinaIvanovDiplom.Windows
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private static void DeleteArticleWithDependencies(DBEntities context, int articleId)
+        {
+            var testIds = context.Tests
+                .Where(t => t.ArticleId == articleId)
+                .Select(t => t.Id)
+                .ToList();
+
+            if (testIds.Count > 0)
+            {
+                var questionIds = context.Questions
+                    .Where(q => testIds.Contains(q.TestId))
+                    .Select(q => q.Id)
+                    .ToList();
+
+                if (questionIds.Count > 0)
+                {
+                    var answers = context.Answers.Where(a => questionIds.Contains(a.QuestionId)).ToList();
+                    if (answers.Count > 0)
+                        context.Answers.RemoveRange(answers);
+
+                    var questions = context.Questions.Where(q => questionIds.Contains(q.Id)).ToList();
+                    if (questions.Count > 0)
+                        context.Questions.RemoveRange(questions);
+                }
+
+                var selectedTests = context.SelectedTests.Where(s => testIds.Contains(s.TestId)).ToList();
+                if (selectedTests.Count > 0)
+                    context.SelectedTests.RemoveRange(selectedTests);
+
+                var testResults = context.TestResults.Where(r => testIds.Contains(r.TestId)).ToList();
+                if (testResults.Count > 0)
+                    context.TestResults.RemoveRange(testResults);
+
+                var tests = context.Tests.Where(t => testIds.Contains(t.Id)).ToList();
+                if (tests.Count > 0)
+                    context.Tests.RemoveRange(tests);
+            }
+
+            var comments = context.ArticleComments.Where(c => c.ArticleId == articleId).ToList();
+            if (comments.Count > 0)
+                context.ArticleComments.RemoveRange(comments);
+
+            var article = context.Articles.Find(articleId);
+            if (article != null)
+                context.Articles.Remove(article);
         }
 
         private void SendCommentButton_Click(object sender, RoutedEventArgs e)
@@ -253,6 +302,55 @@ namespace VerhozinaIvanovDiplom.Windows
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка сохранения комментария: {ex.Message}", "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void DeleteCommentButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(sender is Button button) || !(button.Tag is int commentId))
+                return;
+
+            var result = MessageBox.Show("Удалить этот комментарий?",
+                "Подтверждение удаления",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if (result != MessageBoxResult.Yes)
+                return;
+
+            try
+            {
+                using (var context = new DBEntities())
+                {
+                    var comment = context.ArticleComments.FirstOrDefault(c => c.Id == commentId && c.ArticleId == _articleId);
+                    if (comment == null)
+                    {
+                        MessageBox.Show("Комментарий не найден.", "Информация",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+                        LoadComments();
+                        return;
+                    }
+
+                    var canDelete = SessionContext.IsAdmin
+                        || (SessionContext.CurrentUserId.HasValue && SessionContext.CurrentUserId.Value == comment.UserId);
+
+                    if (!canDelete)
+                    {
+                        MessageBox.Show("Удалять можно только свои комментарии.", "Доступ запрещен",
+                            MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    context.ArticleComments.Remove(comment);
+                    context.SaveChanges();
+                }
+
+                LoadComments();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка удаления комментария: {ex.Message}", "Ошибка",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -337,8 +435,10 @@ namespace VerhozinaIvanovDiplom.Windows
 
         private sealed class CommentItem
         {
+            public int CommentId { get; set; }
             public string Header { get; set; }
             public string Text { get; set; }
+            public Visibility DeleteVisibility { get; set; }
         }
     }
 }

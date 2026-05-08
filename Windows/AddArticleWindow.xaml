@@ -172,7 +172,7 @@
                     Content="Вставить изображение в текст"
                     Style="{StaticResource ButtonStyleGreen}"
                     Width="240"
-                    Height="34"
+                    Height="40"
                     HorizontalAlignment="Left"
                     Click="InsertInlineImageButton_Click"/>
         </StackPanel>

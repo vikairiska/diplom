@@ -73,8 +73,18 @@ namespace VerhozinaIvanovDiplom.Windows
 
         private void RegisterLink_Click(object sender, RoutedEventArgs e)
         {
-            // Заглушка - окно регистрации
-            MessageBox.Show("Окно регистрации будет реализовано позже", "Регистрация", MessageBoxButton.OK, MessageBoxImage.Information);
+            var registerWindow = new RegistrationWindow
+            {
+                Owner = this
+            };
+
+            var isRegistered = registerWindow.ShowDialog();
+            if (isRegistered == true)
+            {
+                LoginTextBox.Focus();
+                LoginTextBox.SelectAll();
+                PasswordBox.Clear();
+            }
         }
 
         private static void EnsureDefaultUsers()
