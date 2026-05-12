@@ -27,6 +27,7 @@ namespace VerhozinaIvanovDiplom.Windows
             Loaded += OnWindowLoaded;
             SaveButton.IsDefault = true;
             EditButton.IsDefault = false;
+            PreviewArticleButton.Visibility = SessionContext.IsAdmin ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public AddArticleWindow(Articles article)
@@ -34,6 +35,8 @@ namespace VerhozinaIvanovDiplom.Windows
             InitializeComponent();
             articleToEdit = article;
             Loaded += OnWindowLoaded;
+
+            CreateTestAfterSaveCheckBox.Visibility = Visibility.Collapsed;
 
             // Заполняем поля существующими данными
             TitleTextBox.Text = article.Title;
@@ -68,6 +71,7 @@ namespace VerhozinaIvanovDiplom.Windows
             SaveButton.IsDefault = false;
 
             Title = "Редактирование статьи";
+            PreviewArticleButton.Visibility = SessionContext.IsAdmin ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
@@ -198,6 +202,46 @@ namespace VerhozinaIvanovDiplom.Windows
             return $"![image](media/{escapedFileName})";
         }
 
+        private void PreviewArticleButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!SessionContext.IsAdmin)
+                return;
+
+            var title = TitleTextBox.Text?.Trim() ?? string.Empty;
+            var content = ContentTextBox.Text ?? string.Empty;
+
+            BitmapImage cover = null;
+            try
+            {
+                if (!string.IsNullOrEmpty(selectedImagePath))
+                {
+                    var bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri(selectedImagePath);
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.EndInit();
+                    cover = bitmap;
+                }
+                else if (articleToEdit?.ImageData != null && articleToEdit.ImageData.Length > 0)
+                {
+                    var bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.StreamSource = new MemoryStream(articleToEdit.ImageData);
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.EndInit();
+                    cover = bitmap;
+                }
+            }
+            catch
+            {
+                // предпросмотр без обложки
+            }
+
+            var preview = new ArticlePreviewWindow(title, content, cover);
+            preview.Owner = this;
+            preview.ShowDialog();
+        }
+
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             // Валидация
@@ -247,6 +291,13 @@ namespace VerhozinaIvanovDiplom.Windows
 
                 MessageBox.Show("Статья успешно добавлена!", "Успех", 
                     MessageBoxButton.OK, MessageBoxImage.Information);
+
+                if (CreateTestAfterSaveCheckBox.IsChecked == true)
+                {
+                    var testWindow = new AddTestWindow(article.Id, null);
+                    testWindow.Owner = Owner ?? this;
+                    testWindow.ShowDialog();
+                }
                 
                 DialogResult = true;
                 Close();

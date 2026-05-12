@@ -102,6 +102,7 @@
     <Compile Include="Users.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ArticleRichContentRenderer.cs" />
     <Compile Include="SessionContext.cs" />
     <Compile Include="UserProfileStore.cs" />
     <Page Include="MainWindow.xaml">
@@ -121,6 +122,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\AddArticleWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ArticlePreviewWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -186,6 +191,10 @@
     </Compile>
     <Compile Include="Windows\AddArticleWindow.xaml.cs">
       <DependentUpon>AddArticleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ArticlePreviewWindow.xaml.cs">
+      <DependentUpon>ArticlePreviewWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Windows\ArticleViewWindow.xaml.cs">
       <DependentUpon>ArticleViewWindow.xaml</DependentUpon>
