@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Прогресс пользователей"
         Height="560"
-        Width="860"
+        Width="1040"
         Background="{StaticResource WindowBackgroundBrush}"
         Foreground="{StaticResource PrimaryTextBrush}"
         WindowStartupLocation="CenterOwner">
@@ -54,15 +54,36 @@
     <Grid Margin="16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock Text="Прогресс пользователей" FontSize="24" FontWeight="Bold"/>
 
+        <Grid Grid.Row="1" Margin="0,12,0,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" MinWidth="160"/>
+                <ColumnDefinition Width="24"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" MinWidth="140"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Специализация:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <ComboBox x:Name="FilterSpecialtyCombo"
+                      Grid.Column="1"
+                      Height="36"
+                      SelectionChanged="FilterCombo_SelectionChanged"/>
+            <TextBlock Grid.Column="3" Text="Город:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <ComboBox x:Name="FilterCityCombo"
+                      Grid.Column="4"
+                      Height="36"
+                      SelectionChanged="FilterCombo_SelectionChanged"/>
+        </Grid>
+
         <ListView x:Name="UsersListView"
-                  Grid.Row="1"
-                  Margin="0,12,0,12"
+                  Grid.Row="2"
+                  Margin="0,4,0,12"
                   ItemContainerStyle="{StaticResource UsersListItemStyle}">
             <ListView.View>
                 <GridView>
@@ -75,15 +96,17 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}" Width="260"/>
-                    <GridViewColumn Header="Логин" DisplayMemberBinding="{Binding Login}" Width="180"/>
-                    <GridViewColumn Header="Попыток" DisplayMemberBinding="{Binding Attempts}" Width="120"/>
-                    <GridViewColumn Header="Успешных" DisplayMemberBinding="{Binding Passed}" Width="120"/>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}" Width="200"/>
+                    <GridViewColumn Header="Логин" DisplayMemberBinding="{Binding Login}" Width="140"/>
+                    <GridViewColumn Header="Специализация" DisplayMemberBinding="{Binding Specialty}" Width="200"/>
+                    <GridViewColumn Header="Город" DisplayMemberBinding="{Binding City}" Width="110"/>
+                    <GridViewColumn Header="Попыток" DisplayMemberBinding="{Binding Attempts}" Width="90"/>
+                    <GridViewColumn Header="Успешных" DisplayMemberBinding="{Binding Passed}" Width="90"/>
                 </GridView>
             </ListView.View>
         </ListView>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Открыть прогресс"
                     Width="170"
                     Height="35"

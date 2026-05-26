@@ -19,6 +19,7 @@ namespace VerhozinaIvanovDiplom
         {
             base.OnStartup(e);
             EnsureSelectedTestsTable();
+            EnsureUsersProfessionalColumns();
             var loginWindow = new LoginWindow();
             loginWindow.Show();
         }
@@ -45,6 +46,29 @@ END
             catch
             {
                 // Ошибка будет видна при попытке назначить тесты.
+            }
+        }
+
+        /// <summary>
+        /// Синхронизация схемы с моделью EF: поля специализации и города (см. AddUserProfessionalRoleAndCity.sql).
+        /// </summary>
+        private static void EnsureUsersProfessionalColumns()
+        {
+            try
+            {
+                using (var context = new DBEntities())
+                {
+                    context.Database.ExecuteSqlCommand(@"
+IF OBJECT_ID(N'dbo.Users', N'U') IS NOT NULL AND COL_LENGTH('dbo.Users', N'ProfessionalRole') IS NULL
+    ALTER TABLE dbo.Users ADD ProfessionalRole NVARCHAR(100) NULL;
+IF OBJECT_ID(N'dbo.Users', N'U') IS NOT NULL AND COL_LENGTH('dbo.Users', N'City') IS NULL
+    ALTER TABLE dbo.Users ADD City NVARCHAR(100) NULL;
+");
+                }
+            }
+            catch
+            {
+                // Ошибка проявится при сохранении пользователя; при необходимости выполните SQL вручную.
             }
         }
     }

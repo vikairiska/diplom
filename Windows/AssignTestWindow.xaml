@@ -2,8 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Назначение тестов"
-        Height="420"
-        Width="620"
+        Height="500"
+        Width="680"
         Background="{StaticResource WindowBackgroundBrush}"
         Foreground="{StaticResource PrimaryTextBrush}"
         WindowStartupLocation="CenterOwner">
@@ -119,24 +119,50 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock Text="Назначить тест пользователю" FontSize="22" FontWeight="Bold"/>
 
-        <TextBlock Grid.Row="1" Margin="0,12,0,4" Text="Пользователь"/>
+        <Grid Grid.Row="1" Margin="0,12,0,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" MinWidth="180"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" MinWidth="160"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Специализация:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <ComboBox x:Name="FilterSpecialtyCombo"
+                      Grid.Column="1"
+                      Height="38"
+                      Style="{StaticResource AssignComboBoxStyle}"
+                      ItemContainerStyle="{StaticResource AssignComboBoxItemStyle}"
+                      SelectionChanged="FilterCombo_SelectionChanged"/>
+            <TextBlock Grid.Column="3" Text="Город:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <ComboBox x:Name="FilterCityCombo"
+                      Grid.Column="4"
+                      Height="38"
+                      Style="{StaticResource AssignComboBoxStyle}"
+                      ItemContainerStyle="{StaticResource AssignComboBoxItemStyle}"
+                      SelectionChanged="FilterCombo_SelectionChanged"/>
+        </Grid>
+
+        <TextBlock Grid.Row="2" Margin="0,4,0,4" Text="Пользователь"/>
         <ComboBox x:Name="UsersComboBox"
-                  Grid.Row="2"
+                  Grid.Row="3"
                   Height="38"
                   DisplayMemberPath="DisplayName"
                   SelectedValuePath="Id"
                   Style="{StaticResource AssignComboBoxStyle}"
                   ItemContainerStyle="{StaticResource AssignComboBoxItemStyle}"/>
 
-        <TextBlock Grid.Row="3" Margin="0,12,0,4" Text="Тест"/>
+        <TextBlock Grid.Row="4" Margin="0,12,0,4" Text="Тест"/>
         <ComboBox x:Name="TestsComboBox"
-                  Grid.Row="4"
+                  Grid.Row="5"
                   Height="38"
                   DisplayMemberPath="DisplayName"
                   SelectedValuePath="Id"
@@ -144,7 +170,7 @@
                   Style="{StaticResource AssignComboBoxStyle}"
                   ItemContainerStyle="{StaticResource AssignComboBoxItemStyle}"/>
 
-        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,14,0,0">
+        <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,14,0,0">
             <Button Content="Назначить"
                     Width="146"
                     Height="40"

@@ -14,6 +14,12 @@ namespace VerhozinaIvanovDiplom.Windows
             InitializeComponent();
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            SpecialtyComboBox.ItemsSource = UserSpecialtyOptions.Specialties;
+            CityComboBox.ItemsSource = UserSpecialtyOptions.Cities;
+        }
+
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             var login = LoginTextBox.Text?.Trim();
@@ -26,6 +32,24 @@ namespace VerhozinaIvanovDiplom.Windows
                 MessageBox.Show("Введите логин.", "Регистрация",
                     MessageBoxButton.OK, MessageBoxImage.Warning);
                 LoginTextBox.Focus();
+                return;
+            }
+
+            var specialty = SpecialtyComboBox.SelectedItem as string;
+            var city = CityComboBox.SelectedItem as string;
+            if (string.IsNullOrWhiteSpace(specialty))
+            {
+                MessageBox.Show("Выберите специализацию.", "Регистрация",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                SpecialtyComboBox.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(city))
+            {
+                MessageBox.Show("Выберите город.", "Регистрация",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                CityComboBox.Focus();
                 return;
             }
 
@@ -85,7 +109,9 @@ namespace VerhozinaIvanovDiplom.Windows
                         FullName = string.IsNullOrWhiteSpace(fullName) ? login : fullName,
                         RoleId = userRole.Id,
                         IsActive = true,
-                        CreatedDate = DateTime.Now
+                        CreatedDate = DateTime.Now,
+                        ProfessionalRole = specialty,
+                        City = city
                     });
 
                     context.SaveChanges();
@@ -98,7 +124,19 @@ namespace VerhozinaIvanovDiplom.Windows
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка регистрации: {ex.Message}", "Ошибка",
+                var root = ex;
+                while (root.InnerException != null)
+                {
+                    root = root.InnerException;
+                }
+
+                var details = root.Message;
+                if (!string.Equals(ex.Message, details, StringComparison.Ordinal))
+                {
+                    details = ex.Message + Environment.NewLine + Environment.NewLine + details;
+                }
+
+                MessageBox.Show($"Ошибка регистрации: {details}", "Ошибка",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

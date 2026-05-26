@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using VerhozinaIvanovDiplom;
 
 namespace VerhozinaIvanovDiplom.Windows
 {
@@ -141,7 +142,9 @@ namespace VerhozinaIvanovDiplom.Windows
                             FullName = "User",
                             RoleId = userRole.Id,
                             IsActive = true,
-                            CreatedDate = DateTime.Now
+                            CreatedDate = DateTime.Now,
+                            ProfessionalRole = UserSpecialtyOptions.Specialties[2],
+                            City = UserSpecialtyOptions.Cities[0]
                         });
                     }
 

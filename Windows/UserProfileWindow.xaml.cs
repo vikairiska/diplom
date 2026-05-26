@@ -1,5 +1,6 @@
 using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -15,6 +16,8 @@ namespace VerhozinaIvanovDiplom.Windows
         public UserProfileWindow(int userId)
         {
             InitializeComponent();
+            SpecialtyComboBox.ItemsSource = UserSpecialtyOptions.Specialties;
+            CityComboBox.ItemsSource = UserSpecialtyOptions.Cities;
             _userId = userId;
             LoadProfile();
             LoadProgress();
@@ -35,11 +38,32 @@ namespace VerhozinaIvanovDiplom.Windows
 
                 FullNameTextBox.Text = user.FullName;
                 LoginTextBox.Text = user.Login;
+
+                var specialty = user.ProfessionalRole;
+                if (!string.IsNullOrWhiteSpace(specialty) &&
+                    ((IList<string>)UserSpecialtyOptions.Specialties).Contains(specialty))
+                {
+                    SpecialtyComboBox.SelectedItem = specialty;
+                }
+                else
+                {
+                    SpecialtyComboBox.SelectedItem = null;
+                }
+
+                var city = user.City;
+                if (!string.IsNullOrWhiteSpace(city) &&
+                    ((IList<string>)UserSpecialtyOptions.Cities).Contains(city))
+                {
+                    CityComboBox.SelectedItem = city;
+                }
+                else
+                {
+                    CityComboBox.SelectedItem = null;
+                }
             }
 
             var profile = UserProfileStore.Get(_userId);
             AgeTextBox.Text = profile.Age?.ToString() ?? string.Empty;
-            PositionTextBox.Text = profile.Position ?? string.Empty;
             _photoBase64 = profile.PhotoBase64;
             SetPhotoFromBase64(_photoBase64);
         }
@@ -101,6 +125,20 @@ namespace VerhozinaIvanovDiplom.Windows
                 return;
             }
 
+            if (!(SpecialtyComboBox.SelectedItem is string specialty) || string.IsNullOrWhiteSpace(specialty))
+            {
+                MessageBox.Show("Выберите специализацию.", "Проверка данных",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (!(CityComboBox.SelectedItem is string city) || string.IsNullOrWhiteSpace(city))
+            {
+                MessageBox.Show("Выберите город.", "Проверка данных",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             using (var context = new DBEntities())
             {
                 var user = context.Users.FirstOrDefault(u => u.Id == _userId);
@@ -114,13 +152,16 @@ namespace VerhozinaIvanovDiplom.Windows
                 user.FullName = string.IsNullOrWhiteSpace(FullNameTextBox.Text)
                     ? user.Login
                     : FullNameTextBox.Text.Trim();
+                user.ProfessionalRole = specialty;
+                user.City = city;
                 context.SaveChanges();
             }
 
+            var previousProfile = UserProfileStore.Get(_userId);
             UserProfileStore.Save(_userId, new UserProfileData
             {
                 Age = string.IsNullOrWhiteSpace(AgeTextBox.Text) ? (int?)null : int.Parse(AgeTextBox.Text),
-                Position = string.IsNullOrWhiteSpace(PositionTextBox.Text) ? null : PositionTextBox.Text.Trim(),
+                Position = previousProfile.Position,
                 PhotoBase64 = _photoBase64
             });
 

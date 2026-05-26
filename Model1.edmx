@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
@@ -118,6 +118,8 @@
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="CreatedDate" Type="datetime2" Precision="7" />
+          <Property Name="ProfessionalRole" Type="nvarchar" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK_Answers_Questions">
           <End Role="Questions" Type="Self.Questions" Multiplicity="1">
@@ -449,6 +451,8 @@
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="CreatedDate" Type="DateTime" Precision="7" />
+          <Property Name="ProfessionalRole" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ArticleComments" Relationship="Self.FK_ArticleComments_Users" FromRole="Users" ToRole="ArticleComments" />
           <NavigationProperty Name="Articles" Relationship="Self.FK_Articles_Users" FromRole="Users" ToRole="Articles" />
           <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
@@ -777,6 +781,8 @@
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ProfessionalRole" ColumnName="ProfessionalRole" />
+                <ScalarProperty Name="City" ColumnName="City" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

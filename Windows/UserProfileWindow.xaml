@@ -41,8 +41,11 @@
                 <TextBlock Text="Возраст" Margin="0,12,0,4"/>
                 <TextBox x:Name="AgeTextBox" Height="32"/>
 
-                <TextBlock Text="Должность" Margin="0,12,0,4"/>
-                <TextBox x:Name="PositionTextBox" Height="32"/>
+                <TextBlock Text="Специализация" Margin="0,12,0,4"/>
+                <ComboBox x:Name="SpecialtyComboBox" Height="32" IsEditable="False"/>
+
+                <TextBlock Text="Город" Margin="0,12,0,4"/>
+                <ComboBox x:Name="CityComboBox" Height="32" IsEditable="False"/>
 
                 <TextBlock Text="Логин" Margin="0,12,0,4"/>
                 <TextBox x:Name="LoginTextBox" Height="32" IsReadOnly="True"/>

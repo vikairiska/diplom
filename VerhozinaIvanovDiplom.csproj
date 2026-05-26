@@ -105,6 +105,7 @@
     <Compile Include="ArticleRichContentRenderer.cs" />
     <Compile Include="SessionContext.cs" />
     <Compile Include="UserProfileStore.cs" />
+    <Compile Include="UserSpecialtyOptions.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
